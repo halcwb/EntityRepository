@@ -77,9 +77,9 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="Tests\AnEntityRepositoryShould.cs" />
-    <Compile Include="Tests\AnEntityShould.cs" />
-    <Compile Include="Tests\TestEntity.cs" />
+    <Compile Include="Testing\AnEntityRepositoryShould.cs" />
+    <Compile Include="Testing\AnEntityShould.cs" />
+    <Compile Include="Testing\TestEntity.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

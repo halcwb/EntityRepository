@@ -4,7 +4,7 @@ using Informedica.EntityRepository.Entities;
 namespace Informedica.EntityRepository
 {
     public interface IRepository<TEnt, in TId>: IEnumerable<TEnt>
-        where TEnt: IEntity<TEnt, TId>
+        where TEnt: class, IEntity<TEnt, TId> 
     {
         TEnt GetById(TId id);
 

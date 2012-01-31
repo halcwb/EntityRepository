@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Informedica.EntityRepository.xTests
+namespace Informedica.EntityRepository.Tests
 {
     [TestClass]
     public class AnEntityRepositoryShould
     {
-        private static readonly Tests.AnEntityRepositoryShould Tests = new Tests.AnEntityRepositoryShould();
+        private static readonly Testing.AnEntityRepositoryShould Tests = new Testing.AnEntityRepositoryShould();
 
         [TestMethod]
         public void ThrowAnErrorWhenInitiatedWithAnNullReference()
@@ -16,7 +16,7 @@ namespace Informedica.EntityRepository.xTests
 
         private static void NewRepostitory()
         {
-            new Repository<Tests.TestEntity, int>(null);
+            new Repository<TestEntity, int>(null);
         }
 
         [TestMethod]
@@ -62,10 +62,13 @@ namespace Informedica.EntityRepository.xTests
         public void HaveTwoItemsWhenTwoEntitiesAreAdded()
         {
             var repos = RepositoryFixture.CreateIntEntityRepository();
-            var ent1 = EntityFixture.CreateEntityWithId(1);
-            var ent2 = EntityFixture.CreateEntityWithId(2);
+            var entity1 = EntityFixture.CreateEntityWithId(1);
+            var entity2 = EntityFixture.CreateEntityWithId(2);
 
-            Tests.HaveTwoItemsWhenTwoEntitiesAreAdded(repos, ent1, ent2);
+            entity1.Name = "Entity1";
+            entity2.Name = "Entity2";
+
+            Tests.HaveTwoItemsWhenTwoEntitiesAreAdded(repos, entity1, entity2);
         }
 
         [TestMethod]
@@ -80,50 +83,56 @@ namespace Informedica.EntityRepository.xTests
         [TestMethod]
         public void NotAcceptADifferentEntityWithTheSameId()
         {
-            var ent1 = EntityFixture.CreateEntityWithId(1);
-            var ent2 = EntityFixture.CreateEntityWithId(1);
+            var entity1 = EntityFixture.CreateEntityWithId(1);
+            var entity2 = EntityFixture.CreateEntityWithId(1);
             var repos = RepositoryFixture.CreateIntEntityRepository();
 
-            Tests.NotAcceptAnEntityWithTheSameIdentityTwice(repos, ent1, ent2);
+            Tests.NotAcceptAnEntityWithTheSameIdentityTwice(repos, entity1, entity2);
         }
 
         [TestMethod]
         public void ReturnAnEntityById()
         {
-            var ent1 = EntityFixture.CreateEntityWithId(1);
-            var ent2 = EntityFixture.CreateEntityWithId(2);
+            var entity1 = EntityFixture.CreateEntityWithId(1);
+            var entity2 = EntityFixture.CreateEntityWithId(2);
             var repos = RepositoryFixture.CreateIntEntityRepository();
+
+            entity1.Name = "TestIdentity1";
+            entity2.Name = "TestIdentity2";
             
-            Tests.ReturnAnEntityById(repos, ent1, ent2);
+            Tests.ReturnAnEntityById(repos, entity1, entity2);
         }
 
         [TestMethod]
         public void NotAcceptAnEntityWithTheSameIdentityTwice()
         {
-            var ent1 = EntityFixture.CreateEntityWithId(1);
-            var ent2 = EntityFixture.CreateEntityWithId(2);
+            var entity1 = EntityFixture.CreateEntityWithId(1);
+            var entity2 = EntityFixture.CreateEntityWithId(2);
             var repos = RepositoryFixture.CreateIntEntityRepository();
 
-            Tests.NotAcceptAnEntityWithTheSameIdentityTwice(repos, ent1, ent2);
+            entity1.Name = "Entity1";
+            entity2.Name = "Entity1";
+
+            Tests.NotAcceptAnEntityWithTheSameIdentityTwice(repos, entity1, entity2);
         }
 
         [TestMethod]
         public void RemoveTestEntity()
         {
-            var ent1 = EntityFixture.CreateEntityWithId(1);
+            var entity1 = EntityFixture.CreateEntityWithId(1);
             var repos = RepositoryFixture.CreateIntEntityRepository();
             
-            Tests.RemoveTestEntity(repos, ent1);
+            Tests.RemoveTestEntity(repos, entity1);
         }
 
         [TestMethod]
         public void RemoveTestEntityById()
         {
             const int id = 1;
-            var ent1 = EntityFixture.CreateEntityWithId(id);
+            var entity1 = EntityFixture.CreateEntityWithId(id);
             var repos = RepositoryFixture.CreateIntEntityRepository();
             
-            Tests.RemoveTestEntityById(repos, ent1);
+            Tests.RemoveTestEntityById(repos, entity1);
         }
 
         [TestMethod]

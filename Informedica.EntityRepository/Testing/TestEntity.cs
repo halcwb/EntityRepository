@@ -1,6 +1,6 @@
 using Informedica.EntityRepository.Entities;
 
-namespace Informedica.EntityRepository.Tests
+namespace Informedica.EntityRepository.Testing
 {
     public abstract class TestEntity: Entity<TestEntity, int>
     {

@@ -44,7 +44,7 @@ namespace Informedica.EntityRepository
 
         public void Remove(TId id)
         {
-            Remove(_repository.SingleOrDefault(e => e.Id.Equals(id)));
+            Remove(_repository.GetById(id));
         }
 
         [Pure]
@@ -61,7 +61,7 @@ namespace Informedica.EntityRepository
 
         public TEnt GetById(TId id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id);
         }
 
         public bool Contains(TEnt entity)

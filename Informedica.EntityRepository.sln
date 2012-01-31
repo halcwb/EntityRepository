@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Informedica.EntityRepository", "Informedica.EntityRepository\Informedica.EntityRepository.csproj", "{E3780309-03FF-43DC-A134-828269F2008C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Informedica.EntityRepository.xTests", "Informedica.EntityRepository.xTests\Informedica.EntityRepository.xTests.csproj", "{86F5493E-BCCA-4893-A39D-970D77B02B0B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Informedica.EntityRepository.Tests", "Informedica.EntityRepository.Tests\Informedica.EntityRepository.Tests.csproj", "{86F5493E-BCCA-4893-A39D-970D77B02B0B}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

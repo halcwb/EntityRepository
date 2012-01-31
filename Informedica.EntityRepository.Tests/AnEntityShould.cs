@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Informedica.EntityRepository.xTests
+namespace Informedica.EntityRepository.Tests
 {
     [TestClass]
     public class AnEntityShould
     {
-        private static readonly Tests.AnEntityShould Tests = new Tests.AnEntityShould();
+        private static readonly Testing.AnEntityShould Tests = new Testing.AnEntityShould();
 
         [TestMethod]
         public void ReturnTrueWhenEntityIsTransient()

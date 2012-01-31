@@ -1,6 +1,6 @@
-namespace Informedica.EntityRepository.xTests
+namespace Informedica.EntityRepository.Tests
 {
-    public class TestEntity: Tests.TestEntity
+    public class TestEntity: Testing.TestEntity
     {
 
         public TestEntity(int id) : base(id) {}

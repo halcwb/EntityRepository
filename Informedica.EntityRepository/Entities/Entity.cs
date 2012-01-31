@@ -1,7 +1,7 @@
 namespace Informedica.EntityRepository.Entities
 {
     public abstract class Entity<TEnt, TId> : IEntity<TEnt, TId>
-        where TEnt : IEntity<TEnt, TId>
+        where TEnt :class, IEntity<TEnt, TId>
     {
         protected Entity()
             : this(default(TId))

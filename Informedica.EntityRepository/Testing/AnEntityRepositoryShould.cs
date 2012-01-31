@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Informedica.EntityRepository.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Informedica.EntityRepository.Tests
+namespace Informedica.EntityRepository.Testing
 {
     public class AnEntityRepositoryShould
     {
@@ -19,12 +20,14 @@ namespace Informedica.EntityRepository.Tests
             }
         }
 
-        public void HaveZeroItemsWhenFirstCreated(IRepository<TestEntity, int> repos)
+        public void HaveZeroItemsWhenFirstCreated<TEnt,TId>(IRepository<TEnt, TId> repos) 
+            where TEnt : class, IEntity<TEnt, TId>
         {
             Assert.AreEqual(0, repos.Count);
         }
 
-        public void ThrowAnErrorWhenANullReferenceIsAdded(IRepository<TestEntity, int> repos)
+        public void ThrowAnErrorWhenANullReferenceIsAdded<TEnt, TId>(IRepository<TEnt, TId> repos)
+            where TEnt : class, IEntity<TEnt, TId>
         {
             try
             {
@@ -37,31 +40,33 @@ namespace Informedica.EntityRepository.Tests
             }
         }
 
-        public void HaveOneItemWhenAnEntityIsAdded(IRepository<TestEntity, int> repos, TestEntity entity)
+        public void HaveOneItemWhenAnEntityIsAdded<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
+            where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity);
 
             Assert.AreEqual(1, repos.Count);
         }
 
-        public void ReturnTheEntityThatWasAdded(IRepository<TestEntity, int> repos, TestEntity entity )
+        public void ReturnTheEntityThatWasAdded<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
+            where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity);
 
             Assert.AreEqual(entity, repos.First());
         }
 
-        public void HaveTwoItemsWhenTwoEntitiesAreAdded(IRepository<TestEntity, int> repos, TestEntity entity1, TestEntity entity2)
+        public void HaveTwoItemsWhenTwoEntitiesAreAdded<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+            where TEnt : class, IEntity<TEnt, TId>
         {
-            entity1.Name = "Entity1";
-            entity2.Name = "Entity2";
             repos.Add(entity1);
             repos.Add(entity2);
 
-            Assert.AreEqual(2, repos.Count());
+            Assert.AreEqual(2, repos.Count);
         }
 
-        public void NotAcceptTheSameEntityTwice(IRepository<TestEntity, int> repos, TestEntity entity)
+        public void NotAcceptTheSameEntityTwice<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
+            where TEnt : class, IEntity<TEnt, TId>
         {
             try
             {
@@ -76,7 +81,8 @@ namespace Informedica.EntityRepository.Tests
             }
         }
 
-        public void NotAcceptADifferentEntityWithTheSameId(IRepository<TestEntity, int> repos, TestEntity entity1, TestEntity entity2)
+        public void NotAcceptADifferentEntityWithTheSameId<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+            where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity1);
 
@@ -91,22 +97,21 @@ namespace Informedica.EntityRepository.Tests
             }
         }
 
-        public void ReturnAnEntityById(IRepository<TestEntity, int> repos, TestEntity entity1, TestEntity entity2)
+        public void ReturnAnEntityById<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+            where TEnt : class, IEntity<TEnt, TId>
         {
-            entity1.Name = "TestIdentity1";
-            entity2.Name = "TestIdentity2";
-
             repos.Add(entity1);
+            var id1 = entity1.Id;
             repos.Add(entity2);
-            Assert.AreEqual(entity1, repos.Single(e => e.Id.Equals(entity1.Id)));
-            Assert.AreEqual(entity2, repos.Single(e => e.Id.Equals(entity2.Id)));
+            var id2 = entity2.Id;
+
+            Assert.AreEqual(entity1, repos.GetById(id1));
+            Assert.AreEqual(entity2, repos.GetById(id2));
         }
 
-        public void NotAcceptAnEntityWithTheSameIdentityTwice(IRepository<TestEntity, int> repos, TestEntity entity1, TestEntity entity2)
+        public void NotAcceptAnEntityWithTheSameIdentityTwice<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+            where TEnt : class, IEntity<TEnt, TId>
         {
-            entity1.Name = "Entity1";
-            entity2.Name = "Entity1";
-
             repos.Add(entity1);
             try
             {
@@ -119,28 +124,27 @@ namespace Informedica.EntityRepository.Tests
             }
         }
 
-        public void RemoveTestEntity(IRepository<TestEntity, int> repos, TestEntity entity1)
+        public void RemoveTestEntity<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
+            where TEnt : class, IEntity<TEnt, TId>
         {
-            entity1.Name = "Entity1";
-
-            repos.Add(entity1);
+            repos.Add(entity);
             Assert.AreEqual(1, repos.Count());
 
-            repos.Remove(entity1);
+            repos.Remove(entity);
             Assert.AreEqual(0, repos.Count());
         }
 
-        public void RemoveTestEntityById(IRepository<TestEntity, int> repos, TestEntity entity1)
+        public void RemoveTestEntityById<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
+            where TEnt : class, IEntity<TEnt, TId>
         {
-            const int id = 1;
-            entity1.Name = "TestEntity1";
-
-            repos.Add(entity1);
+            repos.Add(entity);
+            var id = entity.Id;
             repos.Remove(id);
             Assert.AreEqual(0, repos.Count());
         }
 
-        public void ThrowAnErrorWhenTryingToRemoveNullReference(IRepository<TestEntity, int> repos)
+        public void ThrowAnErrorWhenTryingToRemoveNullReference<TEnt, TId>(IRepository<TEnt, TId> repos)
+            where TEnt : class, IEntity<TEnt, TId>
         {
 
             try
@@ -154,7 +158,8 @@ namespace Informedica.EntityRepository.Tests
             }            
         }
 
-        public void ThrowAnErrorWhenTryingToRemoveNonAddedEntity(IRepository<TestEntity, int> repos, TestEntity entity)
+        public void ThrowAnErrorWhenTryingToRemoveNonAddedEntity<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
+            where TEnt : class, IEntity<TEnt, TId>
         {
             try
             {

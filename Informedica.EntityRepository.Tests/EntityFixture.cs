@@ -1,13 +1,13 @@
-namespace Informedica.EntityRepository.xTests
+namespace Informedica.EntityRepository.Tests
 {
     static internal class EntityFixture
     {
-        public static Tests.TestEntity CreateIntIdEntity()
+        public static Testing.TestEntity CreateIntIdEntity()
         {
             return CreateEntityWithId(1);
         }
 
-        public static Tests.TestEntity CreateEntityWithId(int id)
+        public static Testing.TestEntity CreateEntityWithId(int id)
         {
             var ent = new TestEntity(id) {Name = "TestEntity"};
             return ent;

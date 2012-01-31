@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Informedica.EntityRepository.xTests
+namespace Informedica.EntityRepository.Tests
 {
-    internal class FakeRepository : IRepository<Tests.TestEntity, int>
+    internal class FakeRepository : IRepository<Testing.TestEntity, int>
     {
-        private readonly IList<Tests.TestEntity> _entities = new List<Tests.TestEntity>();
+        private readonly IList<Testing.TestEntity> _entities = new List<Testing.TestEntity>();
 
         #region Implementation of IEnumerable
 
@@ -17,7 +17,7 @@ namespace Informedica.EntityRepository.xTests
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
         /// </returns>
         /// <filterpriority>1</filterpriority>
-        public IEnumerator<Tests.TestEntity> GetEnumerator()
+        public IEnumerator<Testing.TestEntity> GetEnumerator()
         {
             return _entities.GetEnumerator();
         }
@@ -38,22 +38,22 @@ namespace Informedica.EntityRepository.xTests
 
         #region Implementation of IRepository<TestEntity,int>
 
-        public Tests.TestEntity GetById(int id)
+        public Testing.TestEntity GetById(int id)
         {
             return _entities.SingleOrDefault(e => e.Id.Equals(id));
         }
 
-        public bool Contains(Tests.TestEntity entity)
+        public bool Contains(Testing.TestEntity entity)
         {
             return _entities.Contains(entity);
         }
 
-        public void Add(Tests.TestEntity entity)
+        public void Add(Testing.TestEntity entity)
         {
             _entities.Add(entity);
         }
 
-        public void Remove(Tests.TestEntity entity)
+        public void Remove(Testing.TestEntity entity)
         {
             _entities.Remove(entity);
         }
