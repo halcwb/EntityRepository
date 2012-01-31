@@ -8,10 +8,10 @@ using Informedica.EntityRepository.Exceptions;
 
 namespace Informedica.EntityRepository
 {
-    public class Repository<TEnt, TId>: IRepository<TEnt, TId> 
-        where TEnt: class, IEntity<TEnt, TId>
+    public class Repository<TEnt, TId> : IRepository<TEnt, TId>
+        where TEnt : class, IEntity<TEnt, TId>
     {
-        private readonly IRepository<TEnt, TId> _repository; 
+        private readonly IRepository<TEnt, TId> _repository;
 
         public Repository(IRepository<TEnt, TId> repository)
         {
@@ -19,6 +19,8 @@ namespace Informedica.EntityRepository
 
             _repository = repository;
         }
+
+        #region IRepository<TEnt,TId> Members
 
         /// <summary>
         /// Adds an entity to the repository
@@ -46,6 +48,8 @@ namespace Informedica.EntityRepository
         {
             Remove(_repository.GetById(id));
         }
+
+        #endregion
 
         [Pure]
         public bool ContainsEntity(TEnt entity)

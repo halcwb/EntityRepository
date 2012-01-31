@@ -2,7 +2,7 @@ using System;
 
 namespace Informedica.EntityRepository.Exceptions
 {
-    public class DoesNotContainEntityException: Exception
+    public class DoesNotContainEntityException : Exception
     {
     }
 }

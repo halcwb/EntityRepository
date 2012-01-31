@@ -1,13 +1,13 @@
 namespace Informedica.EntityRepository.Tests
 {
-    public class TestEntity: Testing.TestEntity
+    public class TestEntity : Testing.TestEntity
     {
-
-        public TestEntity(int id) : base(id) {}
+        public TestEntity(int id) : base(id)
+        {
+        }
 
         public TestEntity()
         {
-            
         }
 
         public new string Name { get; set; }

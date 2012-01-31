@@ -60,7 +60,7 @@ namespace Informedica.EntityRepository.Tests
 
         public void Remove(int id)
         {
-            var ent = _entities.Single(e => e.Id == id);
+            Testing.TestEntity ent = _entities.Single(e => e.Id == id);
             _entities.Remove(ent);
         }
 

@@ -16,9 +16,9 @@ namespace Informedica.EntityRepository.Tests
         [TestMethod]
         public void BeIdenticalAsAnotherEntityWithTheSameIdentity()
         {
-            var ent1 = EntityFixture.CreateEntityWithId(1);
+            Testing.TestEntity ent1 = EntityFixture.CreateEntityWithId(1);
             ent1.Name = "Entity";
-            var ent2 = EntityFixture.CreateEntityWithId(2);
+            Testing.TestEntity ent2 = EntityFixture.CreateEntityWithId(2);
             ent2.Name = "Entity";
 
             Tests.BeIdenticalAsAnotherEntityWithTheSameIdentity(ent1, ent2);

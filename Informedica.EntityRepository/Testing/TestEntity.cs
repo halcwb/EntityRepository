@@ -2,11 +2,15 @@ using Informedica.EntityRepository.Entities;
 
 namespace Informedica.EntityRepository.Testing
 {
-    public abstract class TestEntity: Entity<TestEntity, int>
+    public abstract class TestEntity : Entity<TestEntity, int>
     {
-        protected TestEntity() {}
+        protected TestEntity()
+        {
+        }
 
-        protected TestEntity(int id) : base(id) {}
+        protected TestEntity(int id) : base(id)
+        {
+        }
 
         public string Name { get; set; }
 

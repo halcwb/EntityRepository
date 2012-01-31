@@ -1,10 +1,10 @@
 namespace Informedica.EntityRepository.Tests
 {
-    static internal class RepositoryFixture
+    internal static class RepositoryFixture
     {
         public static Repository<Testing.TestEntity, int> CreateIntEntityRepository()
         {
-            var fakeRepos = CreateFakeRepository();
+            IRepository<Testing.TestEntity, int> fakeRepos = CreateFakeRepository();
             return new Repository<Testing.TestEntity, int>(fakeRepos);
         }
 

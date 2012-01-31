@@ -16,11 +16,11 @@ namespace Informedica.EntityRepository.Testing
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
             }
         }
 
-        public void HaveZeroItemsWhenFirstCreated<TEnt,TId>(IRepository<TEnt, TId> repos) 
+        public void HaveZeroItemsWhenFirstCreated<TEnt, TId>(IRepository<TEnt, TId> repos)
             where TEnt : class, IEntity<TEnt, TId>
         {
             Assert.AreEqual(0, repos.Count);
@@ -36,7 +36,7 @@ namespace Informedica.EntityRepository.Testing
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
             }
         }
 
@@ -56,7 +56,8 @@ namespace Informedica.EntityRepository.Testing
             Assert.AreEqual(entity, repos.First());
         }
 
-        public void HaveTwoItemsWhenTwoEntitiesAreAdded<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+        public void HaveTwoItemsWhenTwoEntitiesAreAdded<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1,
+                                                                   TEnt entity2)
             where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity1);
@@ -70,18 +71,18 @@ namespace Informedica.EntityRepository.Testing
         {
             try
             {
-
                 repos.Add(entity);
                 repos.Add(entity);
                 Assert.Fail("Repository should not acccept the same entity twice");
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
             }
         }
 
-        public void NotAcceptADifferentEntityWithTheSameId<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+        public void NotAcceptADifferentEntityWithTheSameId<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1,
+                                                                      TEnt entity2)
             where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity1);
@@ -93,7 +94,7 @@ namespace Informedica.EntityRepository.Testing
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
             }
         }
 
@@ -101,15 +102,16 @@ namespace Informedica.EntityRepository.Testing
             where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity1);
-            var id1 = entity1.Id;
+            TId id1 = entity1.Id;
             repos.Add(entity2);
-            var id2 = entity2.Id;
+            TId id2 = entity2.Id;
 
             Assert.AreEqual(entity1, repos.GetById(id1));
             Assert.AreEqual(entity2, repos.GetById(id2));
         }
 
-        public void NotAcceptAnEntityWithTheSameIdentityTwice<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1, TEnt entity2)
+        public void NotAcceptAnEntityWithTheSameIdentityTwice<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity1,
+                                                                         TEnt entity2)
             where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity1);
@@ -120,7 +122,7 @@ namespace Informedica.EntityRepository.Testing
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
             }
         }
 
@@ -138,7 +140,7 @@ namespace Informedica.EntityRepository.Testing
             where TEnt : class, IEntity<TEnt, TId>
         {
             repos.Add(entity);
-            var id = entity.Id;
+            TId id = entity.Id;
             repos.Remove(id);
             Assert.AreEqual(0, repos.Count());
         }
@@ -146,7 +148,6 @@ namespace Informedica.EntityRepository.Testing
         public void ThrowAnErrorWhenTryingToRemoveNullReference<TEnt, TId>(IRepository<TEnt, TId> repos)
             where TEnt : class, IEntity<TEnt, TId>
         {
-
             try
             {
                 repos.Remove(null);
@@ -154,8 +155,8 @@ namespace Informedica.EntityRepository.Testing
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
-            }            
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
+            }
         }
 
         public void ThrowAnErrorWhenTryingToRemoveNonAddedEntity<TEnt, TId>(IRepository<TEnt, TId> repos, TEnt entity)
@@ -168,9 +169,8 @@ namespace Informedica.EntityRepository.Testing
             }
             catch (Exception e)
             {
-                Assert.IsNotInstanceOfType(e, typeof(AssertFailedException));
+                Assert.IsNotInstanceOfType(e, typeof (AssertFailedException));
             }
         }
-
     }
 }

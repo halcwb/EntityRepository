@@ -1,6 +1,6 @@
 namespace Informedica.EntityRepository.Tests
 {
-    static internal class EntityFixture
+    internal static class EntityFixture
     {
         public static Testing.TestEntity CreateIntIdEntity()
         {
@@ -12,6 +12,5 @@ namespace Informedica.EntityRepository.Tests
             var ent = new TestEntity(id) {Name = "TestEntity"};
             return ent;
         }
-
     }
 }

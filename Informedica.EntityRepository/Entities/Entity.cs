@@ -1,7 +1,7 @@
 namespace Informedica.EntityRepository.Entities
 {
     public abstract class Entity<TEnt, TId> : IEntity<TEnt, TId>
-        where TEnt :class, IEntity<TEnt, TId>
+        where TEnt : class, IEntity<TEnt, TId>
     {
         protected Entity()
             : this(default(TId))
@@ -13,10 +13,7 @@ namespace Informedica.EntityRepository.Entities
             SetId(id);
         }
 
-        private void SetId(TId id)
-        {
-            Id = id;
-        }
+        #region IEntity<TEnt,TId> Members
 
         public virtual TId Id { get; protected set; }
 
@@ -27,5 +24,11 @@ namespace Informedica.EntityRepository.Entities
             return Id.Equals(default(TId));
         }
 
+        #endregion
+
+        private void SetId(TId id)
+        {
+            Id = id;
+        }
     }
 }
